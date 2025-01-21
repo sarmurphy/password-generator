@@ -6,6 +6,7 @@ const arguments = process.argv.slice(2);
 const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
 const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numbers = "0123456789";
+const specialCharacters = "!@#$%^&*()-_=+|;:,.<>?";
 
 // Generate help message
 if (arguments.length === 0) {
@@ -16,6 +17,7 @@ if (arguments.length === 0) {
     console.log("--length       : Sets the length of your password. If length is not specified, passwords default to 8 characters.");
     console.log("--number       : Adds random numbers to the password.");
     console.log("--uppercase    : Adds random uppercase letters to the password.");
+    console.log("--symbol       : Adds random symbols (special characters) to the password.");
 };
 
 // Makes the password 8 characters by default if nothing is entered.
