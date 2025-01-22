@@ -23,7 +23,7 @@ const generatePassword = (length, options) => {
 };
 
 // Generate help message.
-if (arguments.length === 0) {
+const flagMessages = () => {
     console.log("Please review the following commands to ensure proper use:\n ");
     console.log("node index.js generate <flags>");
     console.log("");
@@ -36,5 +36,30 @@ if (arguments.length === 0) {
 
 // Makes the password 8 characters by default if nothing is entered.
 const defaultLength = 8;
-let passwordLength = defaultLength
+let passwordLength = defaultLength;
+let options = {
+    uppercaseLetters: false,
+    numbers: false,
+    specialCharacters: false
+};
+
+arguments.forEach(arg => {
+    if (arg === "--help") {
+        flagMessages();
+        process.exit(0);
+    } else if (arg === "--length") {
+        const value = parseInt(arguments[index + 1], 10);
+        if (isNaN(value) || value < 0) {
+            console.log("Invalid length entered. Will use default password length of 8 characters.");
+        } else {
+            passwordLength = value;
+        }
+    } else if (arg === "--uppercase") {
+        options.uppercaseLetters = true;
+    } else if (arg === "--number") {
+        options.numbers = true;
+    } else if (arg === "--symbols") {
+        options.specialCharacters = true;
+    }
+});
 
