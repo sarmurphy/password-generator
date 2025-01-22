@@ -2,13 +2,27 @@ const process = require('process');
 
 const arguments = process.argv.slice(2);
 
-// Character options for setting password.
-const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
-const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const numbers = "0123456789";
-const specialCharacters = "!@#$%^&*()-_=+|;:,.<>?";
+const generatePassword = (length, options) => {
+    // Character options for setting password.
+    const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+    const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const numbers = "0123456789";
+    const specialCharacters = "!@#$%^&*()-_=+|;:,.<>?";
+    
+    let characters = lowercaseLetters; 
+    // Password will be set to include only lowercase letters by default.
+    if (options.uppercaseLetters) characters += uppercaseLetters;
+    if (options.numbers) characters += numbers;
+    if (options.specialCharacters) characters += specialCharacters;
 
-// Generate help message
+    let password = '';
+    for (let i = 0; i < length; i++) {
+        password += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return password;
+};
+
+// Generate help message.
 if (arguments.length === 0) {
     console.log("Please review the following commands to ensure proper use:\n ");
     console.log("node index.js generate <flags>");
