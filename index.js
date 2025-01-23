@@ -24,8 +24,10 @@ const generatePassword = (length, options = {}) => {
 
 // Generate help message to show user how to use the program.
 const flagMessages = () => {
-    console.log(`Please review the following commands to ensure proper use:
-    node index.js <flags>"
+    console.log(`
+    Please review the following commands to ensure proper use:
+    
+    node index.js <flags>
    
     --help         : Displays help message with instructions on how to run 
                      this program.
