@@ -2,8 +2,7 @@ const process = require('process');
 
 const arguments = process.argv.slice(2);
 
-// Default length for password is 8 characters.
-const generatePassword = (length = 8, options = {}) => {
+const generatePassword = (length, options = {}) => {
     // Character options for setting password.
     const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
     const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -38,6 +37,7 @@ const flagMessages = () => {
     `);
 };
 
+// Making default password 8 characters.
 const defaultLength = 8;
 let passwordLength = defaultLength
 
@@ -67,7 +67,7 @@ arguments.forEach((arg, index) => {
         options.uppercaseLetters = true;
     } else if (arg === "--number") {
         options.numbers = true;
-    } else if (arg === "--symbols") {
+    } else if (arg === "--symbol") {
         options.specialCharacters = true;
     }
 });
