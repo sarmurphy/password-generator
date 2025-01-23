@@ -25,15 +25,21 @@ const generatePassword = (length = 8, options = {}) => {
 
 // Generate help message to show user how to use the program.
 const flagMessages = () => {
-    console.log("Please review the following commands to ensure proper use: ");
-    console.log("node index.js generate <flags>");
-    console.log("");
-    console.log("--help         : Displays help message with instructions on how to run this program.");
-    console.log("--length       : Sets the length of your password. If length is not specified, passwords default to 8 characters.");
-    console.log("--number       : Adds random numbers to the password.");
-    console.log("--uppercase    : Adds random uppercase letters to the password.");
-    console.log("--symbol       : Adds random symbols (special characters) to the password.");
+    console.log(`Please review the following commands to ensure proper use:
+    node index.js <flags>"
+   
+    --help         : Displays help message with instructions on how to run 
+                     this program.
+    --length       : Sets the length of your password. If length is not 
+                     specified, passwords default to 8 characters.
+    --number       : Adds random numbers to the password.");
+    --uppercase    : Adds random uppercase letters to the password.");
+    --symbol       : Adds random symbols (special characters) to the password.
+    `);
 };
+
+const defaultLength = 8;
+let passwordLength = defaultLength
 
 let options = {
     uppercaseLetters: false,
