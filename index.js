@@ -2,7 +2,7 @@ const process = require('process');
 
 const arguments = process.argv.slice(2);
 
-const generatePassword = (length, options) => {
+const generatePassword = (length = 8, options = {}) => {
     // Character options for setting password.
     const lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
     const uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -24,7 +24,7 @@ const generatePassword = (length, options) => {
 
 // Generate help message.
 const flagMessages = () => {
-    console.log("Please review the following commands to ensure proper use:\n ");
+    console.log("Please review the following commands to ensure proper use: ");
     console.log("node index.js generate <flags>");
     console.log("");
     console.log("--help         : Displays help message with instructions on how to run this program.");
@@ -34,20 +34,17 @@ const flagMessages = () => {
     console.log("--symbol       : Adds random symbols (special characters) to the password.");
 };
 
-// Makes the password 8 characters by default if nothing is entered.
-const defaultLength = 8;
-let passwordLength = defaultLength;
 let options = {
     uppercaseLetters: false,
     numbers: false,
     specialCharacters: false
 };
 
-arguments.forEach(arg => {
+arguments.forEach((arg, index) => {
     if (arg === "--help") {
         flagMessages();
         process.exit(0);
-    } else if (arg === "--length") {
+    } else if (arg === "--length" && arguments[index + 1]) {
         const value = parseInt(arguments[index + 1], 10);
         if (isNaN(value) || value < 0) {
             console.log("Invalid length entered. Will use default password length of 8 characters.");
@@ -63,3 +60,5 @@ arguments.forEach(arg => {
     }
 });
 
+const password = generatePassword(passwordLength, options);
+console.log(`Your Generated Password is: ${password}`);
